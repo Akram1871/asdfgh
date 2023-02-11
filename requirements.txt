@@ -1,0 +1,14 @@
+pytorch-transformers==1.2.0
+transformers
+#torch==1.7.1
+torch
+# metric
+#seqeval==1.2.1
+seqeval
+# training progressbar
+tqdm==4.38.0
+# tokeniztion
+spacy==2.3.2
+# stopwords
+nltk==3.4.5
+
