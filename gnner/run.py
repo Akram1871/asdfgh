@@ -47,14 +47,14 @@ def run(model_name, epoch,batch_size):
 def main():
 	parser = argparse.ArgumentParser()
 
-  parser.add_argument("--model_name", default="bert-base-uncased", type=str,required=True, help="The model name should be from huggingface models")
-  
-  parser.add_argument("--epoch",default=40,type=int,required=True,help="The number_of epoch")
-  
-  parser.add_argument("--batch_size",default=8,type=int,required=True,help="The number_of Batch size")
-  args = parser.parse_args()
-  
-  run(model_name=args.model_name,epoch=args.epoch,batch_size=args.batch_size)
+	parser.add_argument("--model_name", default="bert-base-uncased", type=str,required=True, help="The model name should be from huggingface models")
+
+	parser.add_argument("--epoch",default=40,type=int,required=True,help="The number_of epoch")
+
+	parser.add_argument("--batch_size",default=8,type=int,required=True,help="The number_of Batch size")
+	args = parser.parse_args()
+
+	run(model_name=args.model_name,epoch=args.epoch,batch_size=args.batch_size)
 
 if __name__ == "__main__":
-  main()
+ 	main()
