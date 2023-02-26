@@ -6,9 +6,9 @@ import argparse
 import pytorch_lightning as pl
 import wandb
 
-def run(model_name, epoch,batch_size):
-	load_train_df = pd.read_pickle("finer_train_with_val_data.pkl")
-	load_test_df = pd.read_pickle("finer_test_data.pkl")
+def run(model_name, epoch,batch_size,learning_rate):
+	load_train_df = pd.read_pickle("finer_train_with_val_data3.pkl")
+	load_test_df = pd.read_pickle("finer_test_data3.pkl")
 	train_data = load_train_df.values
 	dev_data = load_test_df.values
 	#labels=['C', 'E']
@@ -25,7 +25,7 @@ def run(model_name, epoch,batch_size):
 	train_loader = model.create_dataloader(train_data, batch_size=batch_size, num_workers=4, shuffle=False)
 	val_loader = model.create_dataloader(dev_data, batch_size=batch_size, num_workers=4, shuffle=False)
 
-	lightning = LightningWrapper(model)
+	lightning = LightningWrapper(model,lr=learning_rate)
 
 	import time
 	print('The current local time is :', time.ctime())
@@ -55,9 +55,10 @@ def main():
 	parser.add_argument("--epoch",default=40,type=int,required=True,help="The number_of epoch")
 
 	parser.add_argument("--batch_size",default=8,type=int,required=True,help="The number_of Batch size")
+	parser.add_argument("--lr",default=8,type=float,required=True,help="Enter Learning rate")
 	args = parser.parse_args()
 
-	run(model_name=args.model_name,epoch=args.epoch,batch_size=args.batch_size)
+	run(model_name=args.model_name,epoch=args.epoch,batch_size=args.batch_size,learning_rate=args.lr)
 
 if __name__ == "__main__":
  	main()
