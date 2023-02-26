@@ -6,16 +6,19 @@ from utils import compute_metrics, validate, extract_spans, num_ovelap_span
 
 class LightningWrapper(pl.LightningModule):
 
-    def __init__(self, model):
+    def __init__(self, model,lr):
 
         super().__init__()
 
         self.model = model
-        self.non_null_labels = list(self.model.map_lab.values())        
+        self.non_null_labels = list(self.model.map_lab.values())
+        self.learning_rate = lr        
 
     def training_step(self, batch, batch_idx):
 
         x = batch
+        self.log('Batch', len(batch), prog_bar=False)
+        self.log('learning rate', self.learning_rate, prog_bar=False)
         loss = self.model(x)['loss']
         self.log('train_loss', loss)
 
@@ -82,5 +85,5 @@ class LightningWrapper(pl.LightningModule):
             f.write('\n\n')
 
     def configure_optimizers(self):
-        optimizer = torch.optim.Adam(self.model.parameters(), lr=1e-5)
+        optimizer = torch.optim.Adam(self.model.parameters(), lr=self.learning_rate)
         return optimizer
