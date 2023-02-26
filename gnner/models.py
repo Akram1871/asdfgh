@@ -97,7 +97,7 @@ class GnnerAT(BaseModel):
 
 
 class GnnerCONV(BaseModel):
-    def __init__(self, labels, model_name, max_span_width=8, width_embedding_dim=128, project_dim=256):
+    def __init__(self, labels, model_name, max_span_width=16, width_embedding_dim=128, project_dim=256):
         super().__init__(labels, model_name, max_span_width)
 
         self.num_labels = len(labels) + 1
