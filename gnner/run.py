@@ -6,11 +6,12 @@ import argparse
 import pytorch_lightning as pl
 
 def run(model_name, epoch,batch_size):
-	load_train_df = pd.read_pickle("train_with_val_data.pkl")
-	load_test_df = pd.read_pickle("test_data.pkl")
+	load_train_df = pd.read_pickle("finer_train_with_val_data.pkl")
+	load_test_df = pd.read_pickle("finer_test_data.pkl")
 	train_data = load_train_df.values
 	dev_data = load_test_df.values
-	labels=['C', 'E']
+	#labels=['C', 'E']
+	labels = ['PER','LOC','ORG']
 	# import pandas as pd
 	# df = pd.DataFrame(dev_data)
 	# df.head()
@@ -32,6 +33,7 @@ def run(model_name, epoch,batch_size):
 
 	# logging
 	use_wandb = True
+	wandb.login(key='0ab9c5b0bd0a9fa4efcc06cff7109f7e9a098bd9')
 
 	if use_wandb:
 		from pytorch_lightning.loggers import WandbLogger
