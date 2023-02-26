@@ -4,6 +4,7 @@ import pickle
 import pandas as pd
 import argparse
 import pytorch_lightning as pl
+import wandb
 
 def run(model_name, epoch,batch_size):
 	load_train_df = pd.read_pickle("finer_train_with_val_data.pkl")
