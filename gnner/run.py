@@ -38,7 +38,7 @@ def run(model_name, epoch,batch_size,learning_rate):
 
 	if use_wandb:
 		from pytorch_lightning.loggers import WandbLogger
-		logger = WandbLogger(project="GNNer1",name=run_name)
+		logger = WandbLogger(project="FiNER-GCN",name=run_name)
 	else:
 		logger = None
 
@@ -54,11 +54,11 @@ def main():
 
 	parser.add_argument("--epoch",default=40,type=int,required=True,help="The number_of epoch")
 
-	parser.add_argument("--batch_size",default=8,type=int,required=True,help="The number_of Batch size")
-	parser.add_argument("--lr",default=8,type=float,required=True,help="Enter Learning rate")
+	parser.add_argument("--batch",default=16,type=int,required=True,help="The number_of Batch size")
+	parser.add_argument("--lr",default=1e-5,type=float,required=True,help="Enter Learning rate")
 	args = parser.parse_args()
 
-	run(model_name=args.model_name,epoch=args.epoch,batch_size=args.batch_size,learning_rate=args.lr)
+	run(model_name=args.model_name,epoch=args.epoch,batch_size=args.batch,learning_rate=args.lr)
 
 if __name__ == "__main__":
  	main()
