@@ -53,7 +53,7 @@ class LightningWrapper(pl.LightningModule):
         f1_macro = f1_score(true, pred, labels=self.non_null_labels, average='macro')
         
         # Calculate the classification report
-        report = classification_report(y_true, y_pred, labels=self.non_null_labels, output_dict=True)
+        report = classification_report(true, pred, labels=self.non_null_labels, output_dict=True)
 
         # Print the weighted F1 score
         weighted_f1_score = report['weighted avg']['f1-score']
