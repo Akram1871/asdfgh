@@ -51,9 +51,16 @@ class LightningWrapper(pl.LightningModule):
         p, r, f, _ = precision_recall_fscore_support(true, pred, labels=self.non_null_labels, average='micro')
 
         f1_macro = f1_score(true, pred, labels=self.non_null_labels, average='macro')
+        
+        # Calculate the classification report
+        report = classification_report(y_true, y_pred, labels=self.non_null_labels, output_dict=True)
+
+        # Print the weighted F1 score
+        weighted_f1_score = report['weighted avg']['f1-score']
+        
 
         num_ov = num_ovelap_span(spans)
-        
+        self.log('W-F1', weighted_f1_score, prog_bar=True)
         self.log('macro', f1_macro, prog_bar=True)
         self.log('micro', f, prog_bar=True)
         self.log('overlap', num_ov, prog_bar=True)
