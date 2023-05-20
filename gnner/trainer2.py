@@ -13,6 +13,7 @@ class LightningWrapper(pl.LightningModule):
         self.model = model
         self.non_null_labels = list(self.model.map_lab.values())
         self.learning_rate = lr
+        self.best_wf1 = -1
 
         
 
@@ -61,9 +62,13 @@ class LightningWrapper(pl.LightningModule):
         # Print the weighted F1 score
         weighted_f1_score = report['weighted avg']['f1-score']
         
+        if weighted_f1_score > self.best_wf1:
+            self.best_wf1 = weighted_f1_score
+        
 
         num_ov = num_ovelap_span(spans)
         self.log('W-F1', weighted_f1_score, prog_bar=True)
+        self.log('Best W-F1', self.best_wf1, prog_bar=True)
         self.log('macro', f1_macro, prog_bar=True)
         self.log('micro', f, prog_bar=True)
         self.log('overlap', num_ov, prog_bar=True)
