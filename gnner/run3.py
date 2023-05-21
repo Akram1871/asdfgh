@@ -33,7 +33,7 @@ def run(model_name, epoch,batch_size,learning_rate, max_span, emb_width, project
 	import time
 	print('The current local time is :', time.ctime())
 	local = ''.join(str(time.ctime()).split())
-	run_name = model_name+local+'maxpool'+'Span-'+str(max_span)+"emb_dim-"+str(emb_width)+"project-"+str(project_dim)
+	run_name = 'BiGCAT_'+model_name+local+'maxpool'+'Span-'+str(max_span)+"emb_dim-"+str(emb_width)+"project-"+str(project_dim)
 
 	# logging
 	use_wandb = True
