@@ -1,4 +1,4 @@
-from models2 import GnnerAT, GnnerCONV
+from models3 import GnnerAT, GnnerCONV
 from trainer2 import LightningWrapper
 import pickle
 import pandas as pd
