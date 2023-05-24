@@ -66,7 +66,7 @@ class LightningWrapper(pl.LightningModule):
         
         if weighted_f1_score > self.best_wf1:
             self.best_wf1 = weighted_f1_score
-            optimizer = self.configure_optimizers
+            optimizer = self.configure_optimizers()
             path = "/content/drive/MyDrive/best_model.pth"
             torch.save({
             "model_state_dict" :self.model.state_dict(),
