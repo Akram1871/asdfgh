@@ -113,7 +113,7 @@ class ST2ModelV2(nn.Module):
         classifier_dropout = self.args.dropout
         self.dropout = nn.Dropout(classifier_dropout)
         self.classifier = nn.Linear(self.config.hidden_size, 6)
-        self.hidden = 512
+        self.hidden = 384
         self.bi_lstm = nn.LSTM(self.config.hidden_size,self.hidden,2, bidirectional= True)
         self.max_pool = nn.MaxPool1d(2,)
 
